@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use ErrorException;
 use Exception;
-use Framework\Infrastructure\DtoContainers\ErrorDto;
+use Framework\Http\Router\Exception\ErrorDto;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\JsonResponse;
 
