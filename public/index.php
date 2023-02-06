@@ -23,6 +23,8 @@ require 'config/routes.php';
 $request = ServerRequestFactory::fromGlobals();
 $response = $app->handle($request);
 
+header('Access-Control-Allow-Origin: *');
+
 //$response = $response->withHeader('X-Developer', 'PanKotskiy');
 ### Sending
 
