@@ -9,9 +9,7 @@ use Zend\Diactoros\Response\JsonResponse;
 class IndexAction
 {
     private $posts;
-    private $template;
 
-//    public function __construct(PostReadRepository $posts, TemplateRenderer $template)
     public function __construct(PostReadRepository $posts)
     {
         $this->posts = $posts;

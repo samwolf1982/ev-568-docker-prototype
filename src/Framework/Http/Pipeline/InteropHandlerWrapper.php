@@ -16,6 +16,6 @@ class InteropHandlerWrapper implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request)
     {
-        return ($this->callback)($request);
+        return call_user_func($this->callback,$request);
     }
 }

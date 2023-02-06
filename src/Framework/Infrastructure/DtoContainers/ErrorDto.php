@@ -2,7 +2,6 @@
 
 namespace Framework\Infrastructure\DtoContainers;
 
-use ErrorException;
 use Exception;
 
 class ErrorDto

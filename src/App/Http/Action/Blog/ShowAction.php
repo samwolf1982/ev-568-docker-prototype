@@ -3,7 +3,6 @@
 namespace App\Http\Action\Blog;
 
 use App\ReadModel\PostReadRepository;
-use Framework\Template\TemplateRenderer;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\HtmlResponse;
 use Zend\Diactoros\Response\JsonResponse;
@@ -13,10 +12,9 @@ class ShowAction
     private $posts;
     private $template;
 
-    public function __construct(PostReadRepository $posts, TemplateRenderer $template)
+    public function __construct(PostReadRepository $posts)
     {
         $this->posts = $posts;
-        $this->template = $template;
     }
 //    public function __invoke(ServerRequestInterface $request, callable $next)
 //    {

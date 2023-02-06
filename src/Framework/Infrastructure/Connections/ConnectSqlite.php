@@ -1,7 +1,6 @@
 <?php
 
 namespace Framework\Infrastructure\Connections;
-use Exception;
 use PDO;
 
 class ConnectSqlite
