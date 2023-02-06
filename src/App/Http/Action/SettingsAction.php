@@ -9,14 +9,14 @@ class SettingsAction
     public function get()
     {
         return new JsonResponse([
-            'settings' => 555
+            'settings' => 111
         ]);
     }
 
     public function save()
     {
         return new JsonResponse([
-            'settings' => 555
+            'settings' => 222
         ]);
     }
 }
