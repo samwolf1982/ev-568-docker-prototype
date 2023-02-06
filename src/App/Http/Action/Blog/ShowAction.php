@@ -29,6 +29,8 @@ class ShowAction
 //    }
     public function __invoke(ServerRequestInterface $request, callable $next)
     {
+//        $appName=$request->getAttribute('appName');
+//        var_dump($appName);die();
         if (!$post = $this->posts->find($request->getAttribute('id'))) {
             return $next($request);
         }

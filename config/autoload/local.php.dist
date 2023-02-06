@@ -9,7 +9,7 @@ return [
 
     'connect_sqlite' => [
         // 'dsn' => 'mysql:host=localhost;port=3306;dbname=app;charset=utf8mb4',
-        'dsn' => 'sqlite:storage/db.sqlite',
+        'dsn' => 'sqlite:storage/{applicationName}/db.sqlite',
         'username' => '',
         'password' => '',
     ],

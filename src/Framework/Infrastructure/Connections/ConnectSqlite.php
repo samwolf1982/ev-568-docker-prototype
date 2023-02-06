@@ -1,6 +1,7 @@
 <?php
 
 namespace Framework\Infrastructure\Connections;
+use Exception;
 use PDO;
 
 class ConnectSqlite
@@ -12,6 +13,7 @@ class ConnectSqlite
      */
     public function __construct(Pdo $pdo)
     {
+
         $this->pdo=$pdo;
     }
 
@@ -20,6 +22,7 @@ class ConnectSqlite
      */
     public function getPdo()
     {
+
         return $this->pdo;
     }
 }

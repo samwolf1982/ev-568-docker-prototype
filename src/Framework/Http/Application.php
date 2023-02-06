@@ -43,81 +43,74 @@ class Application implements MiddlewareInterface, RequestHandlerInterface
     }
 
     /**
-     * @param $name
      * @param $path
      * @param $handler
      * @param array $methods
      * @param array $options
      */
-    private function route($name, $path, $handler, array $methods, array $options = [])
+    private function route($path, $handler, array $methods, array $options = [])
     {
-        $this->router->addRoute(new RouteData($name, $path, $handler, $methods, $options));
+        $this->router->addRoute(new RouteData($path, $handler, $methods, $options));
     }
 
     /**
-     * @param $name
      * @param $path
      * @param $handler
      * @param array $options
      */
-    public function any($name, $path, $handler, array $options = [])
+    public function any($path, $handler, array $options = [])
     {
-        $this->route($name, $path, $handler, $options);
+        $this->route($path, $handler, $options);
     }
 
     /**
-     * @param $name
      * @param $path
      * @param $handler
      * @param array $options
      */
-    public function get($name, $path, $handler, array $options = [])
+    public function get($path, $handler, array $options = [])
     {
-        $this->route($name, $path, $handler, ['GET'], $options);
+        $this->route( $path, $handler, ['GET'], $options);
     }
 
     /**
-     * @param $name
      * @param $path
      * @param $handler
      * @param array $options
      */
-    public function post($name, $path, $handler, array $options = [])
+    public function post($path, $handler, array $options = [])
     {
-        $this->route($name, $path, $handler, ['POST'], $options);
+        $this->route($path, $handler, ['POST'], $options);
     }
 
     /**
-     * @param $name
      * @param $path
      * @param $handler
      * @param array $options
      */
-    public function put($name, $path, $handler, array $options = [])
+    public function put($path, $handler, array $options = [])
     {
-        $this->route($name, $path, $handler, ['PUT'], $options);
+        $this->route($path, $handler, ['PUT'], $options);
     }
 
     /**
-     * @param $name
      * @param $path
      * @param $handler
      * @param array $options
      */
-    public function patch($name, $path, $handler, array $options = [])
+    public function patch($path, $handler, array $options = [])
     {
-        $this->route($name, $path, $handler, ['PATCH'], $options);
+        $this->route($path, $handler, ['PATCH'], $options);
     }
 
     /**
-     * @param $name
      * @param $path
      * @param $handler
      * @param array $options
      */
-    public function delete($name, $path, $handler, array $options = [])
+    public function delete($path, $handler, array $options = [])
     {
-        $this->route($name, $path, $handler, ['DELETE'], $options);
+        $this->route($path, $handler, ['DELETE'], $options);
     }
 
     /**
