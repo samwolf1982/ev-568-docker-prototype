@@ -6,6 +6,7 @@ use App\Http\Action;
 
 $prefixPath = '/addons/bowling-center-management/app/public';
 
+//$app->get('base_config', $prefixPath . '/base-config', Action\BaseConfigAction::class);
 $app->get('base_config', $prefixPath . '/base-config', Action\BaseConfigAction::class);
 $app->get('settings-get', $prefixPath . '/settings', function () {
     // print_r(func_get_args());
@@ -16,3 +17,4 @@ $app->post('settings-save', $prefixPath . '/settings', function () {
 });
 
 
+$app->get('blog', '/addons/bowling-center-management/app/public/blog/', Action\Blog\IndexAction::class);
