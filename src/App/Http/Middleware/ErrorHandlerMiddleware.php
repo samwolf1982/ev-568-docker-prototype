@@ -3,32 +3,26 @@
 namespace App\Http\Middleware;
 
 use ErrorException;
-use Framework\Template\TemplateRenderer;
+use Exception;
+use Framework\Infrastructure\DtoContainers\ErrorDto;
 use Psr\Http\Message\ServerRequestInterface;
-use Zend\Diactoros\Response\HtmlResponse;
+use Zend\Diactoros\Response\JsonResponse;
 
 class ErrorHandlerMiddleware
 {
     private $debug;
-    private $template;
-
-//    public function __construct(bool $debug, TemplateRenderer $template)
-    public function __construct( $debug, TemplateRenderer $template)
+    public function __construct( $debug)
     {
         $this->debug = $debug;
-        $this->template = $template;
     }
 
     public function __invoke(ServerRequestInterface $request, callable $next)
     {
         try {
             return $next($request);
-        } catch (ErrorException $e) {
-            $view = $this->debug ? 'error/error-debug' : 'error/error';
-            return new HtmlResponse($this->template->render($view, [
-                'request' => $request,
-                'exception' => $e,
-            ]), $e->getCode() ?: 500);
+        } catch (Exception $e) {
+         $error = new ErrorDto($e);
+            return new JsonResponse($error->getError(), $error->getCode());
         }
     }
 }

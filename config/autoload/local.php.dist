@@ -7,9 +7,9 @@ return [
         ],
     ],
 
-    'pdo' => [
+    'connect_sqlite' => [
         // 'dsn' => 'mysql:host=localhost;port=3306;dbname=app;charset=utf8mb4',
-        'dsn' => 'sqlite:db/db.sqlite',
+        'dsn' => 'sqlite:storage/db.sqlite',
         'username' => '',
         'password' => '',
     ],

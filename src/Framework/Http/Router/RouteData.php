@@ -12,7 +12,7 @@ class RouteData
 
     public function __construct($name, $path, $handler, array $methods, array $options)
     {
-        $this->name = $name;
+//        $this->name = $name;
         $this->path = $path;
         $this->handler = $handler;
         $this->methods = array_map('mb_strtoupper', $methods);
