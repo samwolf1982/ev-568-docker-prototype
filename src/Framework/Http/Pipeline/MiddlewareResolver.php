@@ -29,11 +29,15 @@ class MiddlewareResolver
             return $this->createPipe($handler);
         }
 
-        if (\is_string($handler) && $this->container->has($handler)) {
-            return function (ServerRequestInterface $request, ResponseInterface $response, callable $next) use ($handler) {
-                $middleware = $this->resolve($this->container->get($handler));
-                return $middleware($request, $response, $next);
-            };
+        if (\is_string($handler)) {
+            if ($this->container->has($handler)) {
+                return function (ServerRequestInterface $request, ResponseInterface $response, callable $next) use ($handler) {
+                    $middleware = $this->resolve($this->container->get($handler));
+                    return $middleware($request, $response, $next);
+                };
+            } else {
+               echo $handler;die; // TODO ... ~ 'Action\SettingsAction@get'
+            }
         }
 
         if ($handler instanceof MiddlewareInterface) {
