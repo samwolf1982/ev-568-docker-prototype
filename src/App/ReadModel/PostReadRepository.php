@@ -40,7 +40,7 @@ class PostReadRepository
         $view = new PostView();
 
         $view->id = (int)$row['id'];
-        $view->date = new \DateTimeImmutable($row['date']);
+        //$view->date = new \DateTimeImmutable($row['date']);
         $view->title = $row['title'];
         $view->content = $row['content'];
 

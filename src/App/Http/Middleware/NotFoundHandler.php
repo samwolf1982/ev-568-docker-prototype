@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Framework\Template\TemplateRenderer;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\HtmlResponse;
+use Zend\Diactoros\Response\JsonResponse;
 
 class NotFoundHandler
 {
@@ -17,8 +18,6 @@ class NotFoundHandler
 //    public function __invoke(ServerRequestInterface $request) // don't work 5.6 todo it
     public function __invoke(ServerRequestInterface $request)
     {
-        return new HtmlResponse($this->template->render('error/404', [
-            'request' => $request,
-        ]), 404);
+        return new JsonResponse(['ok' => false], 404);
     }
 }
