@@ -10,7 +10,8 @@ class RouteData
     public $methods;
     public $options;
 
-    public function __construct($name, $path, $handler, array $methods, array $options)
+//    public function __construct($name, $path, $handler, array $methods, array $options)
+    public function __construct( $path, $handler, array $methods, array $options)
     {
 //        $this->name = $name;
         $this->path = $path;

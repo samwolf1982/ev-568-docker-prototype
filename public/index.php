@@ -11,21 +11,20 @@ use Zend\Diactoros\ServerRequestFactory;
 
 chdir(dirname(__DIR__));
 require 'vendor/autoload.php';
-
+require_once "config/functions.php";
 $container = require 'config/container.php';
 
-//$app = $container->get(PDO::class);
 $app = $container->get(Application::class);
-//$container->get('PDO');
+
 require 'config/pipeline.php';
-require 'config/routes.php';
+require 'config/routes/admin-routes.php';
+require 'config/routes/client-routes.php';
+
 
 $request = ServerRequestFactory::fromGlobals();
 $response = $app->handle($request);
 
-header('Access-Control-Allow-Origin: *');
-
-//$response = $response->withHeader('X-Developer', 'PanKotskiy');
+$response = $response->withHeader('Access-Control-Allow-Origin', '*');
 ### Sending
 
 //$emitter = new ResponseSender();

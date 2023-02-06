@@ -25,6 +25,7 @@ return [
                     $container->get(Router::class),
                     $container->get(Middleware\NotFoundHandler::class),
                     new Zend\Diactoros\Response()
+//                    new Zend\Diactoros\ServerRequest()
                 );
             },
             Router::class => function () {
@@ -35,19 +36,23 @@ return [
             },
             Middleware\ErrorHandlerMiddleware::class => function (ContainerInterface $container) {
                 return new Middleware\ErrorHandlerMiddleware(
-                    $container->get('config')['debug'],
-                    $container->get(TemplateRenderer::class)
+                    $container->get('config')['debug']
                 );
             },
 
-            //todo create another connection
+            // todo create another connection
             ConnectSqlite::class =>function (ContainerInterface $container) {
                 $config = $container->get('config')['connect_sqlite'];
-                return  new ConnectSqlite(new \PDO($config['dsn'],
-                    $config['username'],
-                    $config['password'],
-                    $config['options']
-                ));
+                  $applicationName= getApplicationName();
+                  if($applicationName){
+                      return  new ConnectSqlite(new \PDO( str_replace('{applicationName}',$applicationName,$config['dsn']) ,
+                          $config['username'],
+                          $config['password'],
+                          $config['options']
+                      ));
+                  }else{
+                      throw new ErrorException('Empty application name',500);
+                  }
                 //why not found??
 //                return new PdoFactory(
 //                    $container

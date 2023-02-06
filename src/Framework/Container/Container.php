@@ -11,6 +11,7 @@ class Container implements ContainerInterface
 
     public function __construct(array $definitions = [])
     {
+        die();
         $this->definitions = $definitions;
     }
 
