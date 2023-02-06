@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Infrastructure\DtoContainers;
+namespace Framework\Http\Router\Exception;
 
 use Exception;
 
