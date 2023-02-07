@@ -24,6 +24,7 @@ return [
         'app' => [
 //            'name' =>str_replace('{applicationName}',$applicationName, $container->get('config')['phinx']['database'])   ,
             'name' =>$dbPath ,
+//            'connection' => $container->get(PDO::class),
             'connection' => $container->get(PDO::class),
         ],
     ],
