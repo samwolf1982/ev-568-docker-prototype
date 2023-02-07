@@ -4,6 +4,7 @@ use App\Http\Middleware;
 
 /** @var \Framework\Http\Application $app */
 
+$app->pipe(Middleware\CorsMiddleware::class);
 $app->pipe(Middleware\ErrorHandlerMiddleware::class);
 //$app->pipe(Middleware\CredentialsMiddleware::class);
 $app->pipe(Middleware\ProfilerMiddleware::class);

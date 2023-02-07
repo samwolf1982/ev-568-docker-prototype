@@ -20,11 +20,9 @@ require 'config/pipeline.php';
 require 'config/routes/admin-routes.php';
 require 'config/routes/client-routes.php';
 
-
 $request = ServerRequestFactory::fromGlobals();
 $response = $app->handle($request);
 
-$response = $response->withHeader('Access-Control-Allow-Origin', '*');
 ### Sending
 
 //$emitter = new ResponseSender();
