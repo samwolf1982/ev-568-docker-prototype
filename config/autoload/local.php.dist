@@ -13,8 +13,8 @@ return [
         'username' => '',
         'password' => '',
     ],
-        'phinx' => [
-    //        'database' => 'storage/{applicationName}/db.sqlite',
-            'database' => 'storage/db.sqlite',
-        ],
+    'phinx' => [
+        'database' => 'storage/{applicationName}/db.sqlite',
+//        'database' => 'storage/db.sqlite',
+    ],
 ];
