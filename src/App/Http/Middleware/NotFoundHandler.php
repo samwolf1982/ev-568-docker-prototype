@@ -2,22 +2,25 @@
 
 namespace App\Http\Middleware;
 
-use Framework\Template\TemplateRenderer;
+use Aura\Router\Exception\RouteNotFound;
+use DomainException;
+use Exception;
+use Framework\Http\Router\Exception\RouteNotFoundException;
+
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\HtmlResponse;
 use Zend\Diactoros\Response\JsonResponse;
 
 class NotFoundHandler
 {
-    private $template;
-
-    public function __construct(TemplateRenderer $template)
+    public function __construct()
     {
-        $this->template = $template;
+
     }
 //    public function __invoke(ServerRequestInterface $request) // don't work 5.6 todo it
     public function __invoke(ServerRequestInterface $request)
     {
-        return new JsonResponse(['ok' => false], 404);
+        throw new \ErrorException('Not Found',404);
+//        return new JsonResponse(['ok' => false], 404);
     }
 }
