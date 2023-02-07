@@ -18,6 +18,7 @@ class IndexAction
 
     public function __invoke(ServerRequestInterface $request)
     {
+//        var_dump($this->posts);die();
         $posts = $this->posts->getAll();
         return new JsonResponse($posts);
     }
