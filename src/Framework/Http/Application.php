@@ -21,7 +21,7 @@ class Application implements MiddlewareInterface, RequestHandlerInterface
 
     public function __construct(MiddlewareResolver $resolver, Router $router, callable $default, ResponseInterface $responsePrototype)
     {
-        echo "1";
+
         $this->resolver = $resolver;
         $this->router = $router;
         $this->pipeline = new MiddlewarePipe();
