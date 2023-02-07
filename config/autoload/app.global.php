@@ -44,6 +44,8 @@ return [
             ConnectSqlite::class =>function (ContainerInterface $container) {
                 $config = $container->get('config')['connect_sqlite'];
                   $applicationName= getApplicationName();
+//                 todo ask about it  how to run  in the console?
+                  $applicationName='bowling-center-management';
                   if($applicationName){
                       return  new ConnectSqlite(new \PDO( str_replace('{applicationName}',$applicationName,$config['dsn']) ,
                           $config['username'],
@@ -58,6 +60,25 @@ return [
 //                    $container
 //                );
             } ,
+            //todo only console migration need fix
+            PDO::class =>function (ContainerInterface $container) {
+                $config = $container->get('config')['connect_sqlite'];
+                $applicationName= getApplicationName();
+//                 todo ask about it  how to run  in the console?
+                $applicationName='bowling-center-management';
+                if($applicationName){
+                    return new PDO( str_replace('{applicationName}',$applicationName,$config['dsn']) ,
+                        $config['username'],
+                        $config['password'],
+                        $config['options']
+                    );
+                }else{
+                    throw new ErrorException('Empty application name',500);
+                }
+            } ,
+
+
+
         ],
     ],
 
