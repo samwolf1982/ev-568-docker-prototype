@@ -30,7 +30,7 @@ chrome-user-data
 /public/build
 /public/hot
 /public/storage
-/storage/*.key
+/data/*.key
 .env
 .env.backup
 .env.production
@@ -43,3 +43,4 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+data/*

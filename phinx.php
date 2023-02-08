@@ -29,7 +29,7 @@ return [
         ],
     ],
     'paths' => [
-        'migrations' => 'storage/db/migrations',
-        'seeds' =>  'storage/db/seeds',
+        'migrations' => "{$applicationName}/data/db/migrations",
+        'seeds' =>  "{$applicationName}/data/db/seeds",
     ],
 ];

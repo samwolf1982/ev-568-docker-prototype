@@ -20,7 +20,7 @@ class ModelSqlite
         // todo :)
         $container=$GLOBALS['container'];
         $connect= $container->get(ConnectSqlite::class);
-        $pdo = $connect->getPdo();// new PDO("sqlite:storage/bowling-center-management/db.sqlite");
+        $pdo = $connect->getPdo();// new PDO("sqlite:data/bowling-center-management/db.sqlite");
         //todo check multi connections
         $this->db = new NotORM($pdo);
     }
