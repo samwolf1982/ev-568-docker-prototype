@@ -35,8 +35,13 @@ class MiddlewareResolver
                     $middleware = $this->resolve($this->container->get($handler));
                     return $middleware($request, $response, $next);
                 };
-            } else {
-               echo $handler;die; // TODO ... ~ 'Action\SettingsAction@get'
+            } else if (strpos($handler, '@')) {
+                return function () use ($handler) {
+                    list($class, $method) = explode('@', $handler);
+                    $class = 'App\Http\\' . $class;
+                    $controller = $this->container->get($class);
+                    return call_user_func([$controller, $method], func_get_args());
+                };
             }
         }
 
