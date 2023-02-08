@@ -6,7 +6,6 @@ composer.lock
 node_modules
 scripts/flow/*/.flowconfig
 .flowconfig
-*~
 .grunt
 _SpecRunner.html
 __benchmarks__
