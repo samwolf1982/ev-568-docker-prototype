@@ -17,7 +17,7 @@ class IndexAction
     public function __invoke(ServerRequestInterface $request)
     {
 
-
+        return new JsonResponse($request->getAttributes());
 //        return new JsonResponse($request->getParsedBody());
      $post=  (new Posts())->where('title','Dolores 123')->where('id',3)->first();
      $posts=  (new Posts())->where('title','Dolores 123')->all();
