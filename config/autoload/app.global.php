@@ -9,6 +9,7 @@ use Framework\Http\Router\AuraRouterAdapter;
 use Framework\Http\Router\Router;
 use Framework\Infrastructure\Connections\ConnectSqlite;
 //use Framework\Infrastructure\PdoFactory;
+use Framework\Infrastructure\DataBase\ModelSqlite;
 use Framework\Infrastructure\PdoFactory;
 use Framework\Template\TemplateRenderer;
 use Psr\Container\ContainerInterface;
@@ -39,6 +40,8 @@ return [
                     $container->get('config')['debug']
                 );
             },
+
+
 
             // todo create another connection
             ConnectSqlite::class =>function (ContainerInterface $container) {
