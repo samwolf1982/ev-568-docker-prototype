@@ -11,7 +11,8 @@ use Zend\Diactoros\Response\JsonResponse;
 class ErrorHandlerMiddleware
 {
     private $debug;
-    public function __construct( $debug)
+
+    public function __construct($debug)
     {
         $this->debug = $debug;
     }
@@ -21,7 +22,7 @@ class ErrorHandlerMiddleware
         try {
             return $next($request);
         } catch (Exception $e) {
-         $error = new ErrorDto($e);
+            $error = new ErrorDto($e);
             return new JsonResponse($error->getError(), $error->getCode());
         }
     }

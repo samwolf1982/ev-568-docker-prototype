@@ -14,8 +14,8 @@ $prefixPath = '/addons/{appName}/{appId}';
 
 //$app->get('base_config', $prefixPath . '/base-config', Action\BaseConfigAction::class);
 $app->get($prefixPath . '/base-config', Action\BaseConfigAction::class);
-$app->get($prefixPath . '/settings', 'Action\SettingsAction@get');
-$app->post($prefixPath . '/settings', 'Action\SettingsAction@save');
+$app->get($prefixPath . '/settings', 'App\Http\Action\SettingsAction@get');
+$app->post($prefixPath . '/settings', 'App\Http\Action\SettingsAction@save');
 
 
 $app->get('/addons/{appName}/app/public/blog', Action\Blog\IndexAction::class);
