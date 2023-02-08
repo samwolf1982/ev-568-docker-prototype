@@ -53,13 +53,13 @@ return [
                 $dbPath = str_replace('{instanceId}', $instanceId,$dbPath);
                   //todo check exist file
                 try{
-                    return  new ConnectSqlite(new \PDO($dbPath ,
+                    return  new ConnectSqlite(new \PDO($dbPath,
                         $config['username'],
                         $config['password'],
                         $config['options']
                     ));
                 }catch (Exception $e){
-                    throw new ErrorException('Empty application name',500);
+                    throw new ErrorException($e->getMessage(),500);
                 }
 
 
