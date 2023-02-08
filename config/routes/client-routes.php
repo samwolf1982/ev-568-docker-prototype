@@ -8,9 +8,7 @@ use Interop\Container\ContainerInterface;
 
 /** @var \Framework\Http\Application $app */
 
-//$prefixPath = '/addons/{appName}/app/public';
-$prefixPath = '/addons/{appName}/{appId}';
-
+$prefixPath = '/addons/{applicationName}/{instanceId}';
 
 //$app->get('base_config', $prefixPath . '/base-config', Action\BaseConfigAction::class);
 $app->get($prefixPath . '/base-config', Action\BaseConfigAction::class);
