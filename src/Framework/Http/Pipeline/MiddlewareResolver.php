@@ -2,11 +2,15 @@
 
 namespace Framework\Http\Pipeline;
 
+use App\Http\Action\SettingsAction;
+use Aura\Router\Exception;
 use Interop\Http\Server\MiddlewareInterface;
+use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Stratigility\MiddlewarePipe;
+use Psr\Container\NotFoundExceptionInterface;
 
 class MiddlewareResolver
 {
@@ -38,7 +42,7 @@ class MiddlewareResolver
             } else if (strpos($handler, '@')) {
                 return function () use ($handler) {
                     list($class, $method) = explode('@', $handler);
-                    $entry = $this->container->get($class);
+                    $entry = @$this->container->get($class);
                     return call_user_func_array([$entry, $method], func_get_args());
                 };
             }

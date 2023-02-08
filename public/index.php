@@ -18,8 +18,8 @@ $container = require 'config/container.php';
 $app = $container->get(Application::class);
 
 require 'config/pipeline.php';
-require 'config/routes/admin-routes.php';
-require 'config/routes/client-routes.php';
+require 'routes/admin-routes.php';
+require 'routes/client-routes.php';
 
 $request = ServerRequestFactory::fromGlobals();
 $response = $app->handle($request);

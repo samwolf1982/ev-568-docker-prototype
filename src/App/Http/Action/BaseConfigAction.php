@@ -8,7 +8,7 @@ class BaseConfigAction
 {
     public function __invoke()
     {
-        $localesDir = getcwd() . '/locale';
+        $localesDir = getPathDataOfApplication() . '/locale';
 
         $locales = array_map(function ($filename) {
             return [
