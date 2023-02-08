@@ -44,3 +44,12 @@ yarn-error.log
 /.idea
 /.vscode
 data/*
+!data/.gitkeep
+!data/bowling-center-management/.gitkeep
+!data/bowling-center-management/db
+
+## it's only development start
+!data/bowling-center-management/000c294b906e-1556261996.04-3615142968/*
+
+
+## it's only development end
