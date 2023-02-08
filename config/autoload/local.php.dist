@@ -9,12 +9,13 @@ return [
 
     'connect_sqlite' => [
         // 'dsn' => 'mysql:host=localhost;port=3306;dbname=app;charset=utf8mb4',
-        'dsn' => 'sqlite:data/{applicationName}/db.sqlite',
+        'dsn' => 'data/{applicationName}/instances/{instanceId}/db.sqlite',
         'username' => '',
         'password' => '',
     ],
     'phinx' => [
-        'database' => 'data/{applicationName}/db.sqlite',
-//        'database' => 'data/db.sqlite',
+        'databaseSqlite' => 'data/{applicationName}/instances/{instanceId}/db.sqlite',
+        'migrationSqliteDirectory' => 'data/{applicationName}/db/migrations',
+        'seedsSqliteDirectory' => 'data/{applicationName}/db/seeds',
     ],
 ];
