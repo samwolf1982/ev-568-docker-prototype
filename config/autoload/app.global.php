@@ -48,19 +48,22 @@ return [
                 $config = $container->get('config')['connect_sqlite'];
                   $applicationName= getApplicationName();
                   $instanceId=getInstanceId();
-                  var_dump($applicationName);
-                  die();
-//                 todo ask about it  how to run  in the console?
-                  $applicationName='bowling-center-management';
-                  if($applicationName){
-                      return  new ConnectSqlite(new \PDO( str_replace('{applicationName}',$applicationName,$config['dsn']) ,
-                          $config['username'],
-                          $config['password'],
-                          $config['options']
-                      ));
-                  }else{
-                      throw new ErrorException('Empty application name',500);
-                  }
+//                throw new ErrorException('Empty application name',500);
+                $dbPath = str_replace('{applicationName}', $applicationName, $container->get('config')['connect_sqlite']['dsn']);
+                $dbPath = str_replace('{instanceId}', $instanceId,$dbPath);
+                  //todo check exist file
+                try{
+                    return  new ConnectSqlite(new \PDO($dbPath ,
+                        $config['username'],
+                        $config['password'],
+                        $config['options']
+                    ));
+                }catch (Exception $e){
+                    throw new ErrorException('Empty application name',500);
+                }
+
+
+
                 //why not found??
 //                return new PdoFactory(
 //                    $container
