@@ -36,7 +36,7 @@ return [
                 return new MiddlewareResolver($container, new Zend\Diactoros\Response());
             },
             Middleware\ErrorHandlerMiddleware::class => function (ContainerInterface $container) {
-                return new Middleware\ErrorHandlerMiddleware(
+                    return new Middleware\ErrorHandlerMiddleware(
                     $container->get('config')['debug']
                 );
             },
@@ -48,7 +48,7 @@ return [
                 $config = $container->get('config')['connect_sqlite'];
                   $applicationName= getApplicationName();
                   $instanceId=getInstanceId();
-//                throw new ErrorException('Empty application name',500);
+
                 $dbPath = str_replace('{applicationName}', $applicationName, $container->get('config')['connect_sqlite']['dsn']);
                 $dbPath = str_replace('{instanceId}', $instanceId,$dbPath);
                   //todo check exist file
@@ -62,30 +62,28 @@ return [
                     throw new ErrorException($e->getMessage(),500);
                 }
 
-
-
                 //why not found??
 //                return new PdoFactory(
 //                    $container
 //                );
             } ,
             //todo only console migration need fix
-            PDO::class =>function (ContainerInterface $container) {
-                $config = $container->get('config')['connect_sqlite'];
-//                var_dump(1234);die();
-                $applicationName= getApplicationName();
-//                 todo ask about it  how to run  in the console?
-                $applicationName='bowling-center-management';
-                if($applicationName){
-                    return new PDO( str_replace('{applicationName}',$applicationName,$config['dsn']) ,
-                        $config['username'],
-                        $config['password'],
-                        $config['options']
-                    );
-                }else{
-                    throw new ErrorException('Empty application name',500);
-                }
-            } ,
+//            PDO::class =>function (ContainerInterface $container) {
+//                $config = $container->get('config')['connect_sqlite'];
+////                var_dump(1234);die();
+//                $applicationName= getApplicationName();
+////                 todo ask about it  how to run  in the console?
+//                $applicationName='bowling-center-management';
+//                if($applicationName){
+//                    return new PDO( str_replace('{applicationName}',$applicationName,$config['dsn']) ,
+//                        $config['username'],
+//                        $config['password'],
+//                        $config['options']
+//                    );
+//                }else{
+//                    throw new ErrorException('Empty application name',500);
+//                }
+//            } ,
 
 
 
