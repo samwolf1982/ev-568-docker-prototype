@@ -1,50 +1,58 @@
 <?php
-function getApplicationName(){
-     $uri=  trim($_SERVER['REQUEST_URI'],'/');
-     $result=  explode('/',$uri);
-     if(count($result)>1){
-         return $result[1];
-     }
+
+const DATA_DIRECTORY = __DIR__ . '/../data';
+
+function getPathDataOfApplication()
+{
+    return DATA_DIRECTORY . DIRECTORY_SEPARATOR . getApplicationName();
+}
+
+function getPathDataOfInstance()
+{
+    return getPathDataOfApplication() . DIRECTORY_SEPARATOR . getInstanceId();
+}
+
+function getApplicationName()
+{
+    $uri = trim($_SERVER['REQUEST_URI'], '/');
+    $result = explode('/', $uri);
+    if (count($result) > 1) {
+        return $result[1];
+    }
     return false;
 }
 
-function getInstanceId(){
-    $uri=  trim($_SERVER['REQUEST_URI'],'/');
-    $result=  explode('/',$uri);
-    if(count($result)>2){
+function getInstanceId()
+{
+    $uri = trim($_SERVER['REQUEST_URI'], '/');
+    $result = explode('/', $uri);
+    if (count($result) > 2) {
         return $result[2];
     }
     return false;
 }
 
 
-
-
-
-
-
-
-
-
 //----------------- only terminal use
 //https://www.php.net/manual/en/features.commandline.php
-function arguments($argv) {
+function arguments($argv)
+{
 
     $_ARG = array();
 
     foreach ($argv as $arg) {
 
-        if (ereg('--([^=]+)=(.*)',$arg,$reg)) {
+        if (ereg('--([^=]+)=(.*)', $arg, $reg)) {
 
             $_ARG[$reg[1]] = $reg[2];
 
-        } elseif(ereg('^-([a-zA-Z0-9])',$arg,$reg)) {
+        } elseif (ereg('^-([a-zA-Z0-9])', $arg, $reg)) {
 
             $_ARG[$reg[1]] = 'true';
 
         } else {
 
-            $_ARG['input'][]=$arg;
+            $_ARG['input'][] = $arg;
 
         }
 
