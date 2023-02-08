@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Action;
+use App\Http\Controllers;
 
 /** @var \Framework\Http\Application $app */
 

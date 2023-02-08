@@ -2,7 +2,7 @@
 
 namespace Framework\Http\Pipeline;
 
-use App\Http\Action\SettingsAction;
+use App\Http\Controllers\SettingsAction;
 use Aura\Router\Exception;
 use Interop\Http\Server\MiddlewareInterface;
 use Psr\Container\ContainerExceptionInterface;
