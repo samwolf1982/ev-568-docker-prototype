@@ -2,28 +2,27 @@
 
 namespace App\Http\Action\Blog;
 
+use App\Models\Posts;
 use App\ReadModel\PostReadRepository;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\JsonResponse;
 
 class IndexAction
 {
-    private $posts;
 
-    public function __construct(PostReadRepository $posts)
+    public function __construct()
     {
-        $this->posts = $posts;
-//        $this->template = $template;
     }
 
     public function __invoke(ServerRequestInterface $request)
     {
-        $posts = $this->posts->getAll();
-        return new JsonResponse($posts);
-    }
-    public function posts(){
 
-        $posts = $this->posts->getAll();
-        return new JsonResponse($posts);
+     $post=  (new Posts())->where('title','Dolores 123')->where('id',3)->get();
+     $posts=  (new Posts())->where('title','Dolores 123')->all();
+//        var_dump($post['id']);
+//        foreach ($posts as $item) {
+//            var_dump($item["id"]);
+//        }
+        return new JsonResponse([$post,$posts]);
     }
 }

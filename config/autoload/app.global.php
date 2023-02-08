@@ -9,6 +9,7 @@ use Framework\Http\Router\AuraRouterAdapter;
 use Framework\Http\Router\Router;
 use Framework\Infrastructure\Connections\ConnectSqlite;
 //use Framework\Infrastructure\PdoFactory;
+use Framework\Infrastructure\DataBase\ModelSqlite;
 use Framework\Infrastructure\PdoFactory;
 use Framework\Template\TemplateRenderer;
 use Psr\Container\ContainerInterface;
@@ -40,6 +41,8 @@ return [
                 );
             },
 
+
+
             // todo create another connection
             ConnectSqlite::class =>function (ContainerInterface $container) {
                 $config = $container->get('config')['connect_sqlite'];
@@ -63,6 +66,7 @@ return [
             //todo only console migration need fix
             PDO::class =>function (ContainerInterface $container) {
                 $config = $container->get('config')['connect_sqlite'];
+//                var_dump(1234);die();
                 $applicationName= getApplicationName();
 //                 todo ask about it  how to run  in the console?
                 $applicationName='bowling-center-management';

@@ -2,7 +2,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class Test1 extends AbstractMigration
+class Init extends AbstractMigration
 {
     /**
      * Change Method.
@@ -31,7 +31,8 @@ class Test1 extends AbstractMigration
      */
     public function change()
     {
-        $this->table('test')
+
+        $this->table('posts')
             ->addColumn('date', 'datetime')
             ->addColumn('title', 'string')
             ->addColumn('content', 'text')

@@ -23,7 +23,7 @@ class PostReadRepository
     public function getAll()
     {
         $stmt = $this->pdo->query('SELECT * FROM posts ORDER BY id DESC');
-
+//var_dump( $stmt->fetchAll());die();
         return array_map([$this, 'hydratePost'], $stmt->fetchAll());
     }
 
