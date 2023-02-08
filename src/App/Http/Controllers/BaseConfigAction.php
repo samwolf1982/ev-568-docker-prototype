@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Action;
+namespace App\Http\Controllers;
 
 use Zend\Diactoros\Response\JsonResponse;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Action\Blog;
+namespace App\Http\Controllers\Blog;
 
 use App\Models\Posts;
 use App\ReadModel\PostReadRepository;
