@@ -3,8 +3,8 @@
 namespace App\Http\Action;
 
 use App\ReadModel\PostReadRepository;
-use Framework\Infrastructure\Connections\ConnectSqlite;
 use Zend\Diactoros\Response\JsonResponse;
+use Zend\Diactoros\ServerRequest;
 
 class SettingsAction
 {
@@ -25,10 +25,14 @@ class SettingsAction
         ]);
     }
 
-    public function save()
+    public function save(ServerRequest $request)
     {
+        // throw new \Exception("Test");
+
         return new JsonResponse([
-            'settings' => 555
+            'settings' => 555,
+            'attributes' => $request->getAttributes(),
+            'args' => get_class(func_get_args()[0])
         ]);
     }
 }
