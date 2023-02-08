@@ -51,7 +51,6 @@ return [
 
                 $dbPath = str_replace('{applicationName}', $applicationName, $container->get('config')['connect_sqlite']['dsn']);
                 $dbPath = str_replace('{instanceId}', $instanceId,$dbPath);
-                var_dump($dbPath);
                   //todo check exist file
                 try{
                     return  new ConnectSqlite(new \PDO($dbPath,
