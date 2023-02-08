@@ -8,21 +8,14 @@ use Interop\Container\ContainerInterface;
 
 /** @var \Framework\Http\Application $app */
 
-$prefixPath = '/addons/{appName}/app/public';
-//$prefixPath = '/addons/{appName}/{appId}';
+//$prefixPath = '/addons/{appName}/app/public';
+$prefixPath = '/addons/{appName}/{appId}';
 
 
 //$app->get('base_config', $prefixPath . '/base-config', Action\BaseConfigAction::class);
 $app->get($prefixPath . '/base-config', Action\BaseConfigAction::class);
-$app->get( $prefixPath . '/settings', function () use ($container) {
-    // print_r(func_get_args());
-//    return (new Action\SettingsAction($container->get(ConnectSqlite::class)))->get();
-   return $container->get(Action\SettingsAction::class)->get();
-//    return (new Action\SettingsAction($container->get(ConnectSqlite::class)))->get();
-});
-$app->post($prefixPath . '/settings', function () {
-    return (new Action\SettingsAction())->save();
-});
+$app->get($prefixPath . '/settings', 'Action\SettingsAction@get');
+$app->post($prefixPath . '/settings', 'Action\SettingsAction@save');
 
 
 $app->get('/addons/{appName}/app/public/blog', Action\Blog\IndexAction::class);
