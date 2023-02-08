@@ -24,15 +24,45 @@ $argumentsList=arguments($argv);
 $applicationName=$argumentsList['name'];
 $instanceId=$argumentsList['id'];
 $commandParams=$argumentsList['command'];
+$className=$argumentsList['className'];
 if(empty($commandParams)){
     $commandParams="migrate";
 }
+
+
+$extendConfigs=[];
 echo PHP_EOL;
 if( empty($applicationName) || empty($instanceId) ){
     echo 'Not enough parameters  '.PHP_EOL;
     echo 'Use --name, --id  '.PHP_EOL;
     die();
 }
+$step=1;
+
+if(!empty($commandParams)){
+    switch ($commandParams){
+        case 'create' :
+            //create migration file
+            if(empty($className)){
+                echo 'Not enough parameters  '.PHP_EOL;
+                echo 'Use --className'.PHP_EOL;
+                die();
+            }else{
+                $extendConfigs[]=['name'=>$className];
+            }
+            break;
+        case 'rollback' :
+            //create migration file
+            if(!empty($argumentsList['step'])){
+                if(intval($argumentsList['step'])){
+                    $step=$argumentsList['step'];
+                }
+            }
+            break;
+    }
+}
+
+
 
 $dbPath = str_replace('{applicationName}', $applicationName, $container->get('config')['phinx']['databaseSqlite']);
 $dbPath = str_replace('{instanceId}', $instanceId,$dbPath);
@@ -44,14 +74,18 @@ echo "Data base file is: {$dbPath}".PHP_EOL;
 echo "Migrate directory is: {$migrateDirectory}".PHP_EOL;
 echo "Seeds directory is: {$seedsDirectory}".PHP_EOL;
 
+$configs=[];
 $phinx = new PhinxApplication();
 //$command = $phinx->find('migrate');
 $command = $phinx->find($commandParams);
+
 $arguments = [
     'command'         =>$commandParams,
-//    '--environment'   => 'development',
     '--configuration' => 'console/sqlitePhinx.php'
 ];
+
+$arguments=array_merge($arguments,...$extendConfigs);
+
 $input = new ArrayInput($arguments);
 //$returnCode = $command->run(new ArrayInput($arguments), $output);
 
@@ -64,27 +98,7 @@ $input = new ArrayInput($arguments);
 $phinx->setAutoExit(false);
 $output = new ConsoleOutput(fopen('php://memory', 'a', true));
 //$returnCode = $command->run(new ArrayInput($arguments), new NullOutput());
-$returnCode = $command->run(new ArrayInput($arguments), $output);
-
-echo "Code: {$returnCode}".PHP_EOL;
-//var_dump(arguments($argv));
-
-//exit();
-//die();
-//return [
-//    'environments' => [
-//        'default_migration_table' => 'migrations',
-//        'default_environment' => 'development',
-////        'default_database' => $dbPath,
-//        'app' => [
-////            'name' =>str_replace('{applicationName}',$applicationName, $container->get('config')['phinx']['database'])   ,
-//            'name' => $dbPath,
-////            'connection' => $container->get(PDO::class),
-//            'connection' => $container->get(PDO::class),
-//        ],
-//    ],
-//    'paths' => [
-//        'migrations' => "{$applicationName}/data/db/migrations",
-//        'seeds' => "{$applicationName}/data/db/seeds",
-//    ],
-//];
+for ($i=0;$i<$step;$i++){
+    $returnCode = $command->run(new ArrayInput($arguments), $output);
+    echo "Code: {$returnCode}".PHP_EOL;
+}
