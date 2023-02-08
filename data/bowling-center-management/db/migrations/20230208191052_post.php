@@ -2,7 +2,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class Init extends AbstractMigration
+class Post extends AbstractMigration
 {
     /**
      * Change Method.
@@ -29,13 +29,29 @@ class Init extends AbstractMigration
      * Remember to call "create()" or "update()" and NOT "save()" when working
      * with the Table class.
      */
-    public function change()
-    {
+//    public function change()
+//    {
+//        // create the table
+//        $this->table('posts')
+//            ->addColumn('date', 'datetime')
+//            ->addColumn('title', 'string')
+//            ->addColumn('content', 'text')
+//            ->create();
+//    }
 
+    public function up(){
         $this->table('posts')
             ->addColumn('date', 'datetime')
             ->addColumn('title', 'string')
             ->addColumn('content', 'text')
             ->create();
     }
+
+    public function down(){
+        $this->dropTable('posts');
+
+    }
+
+
+
 }
