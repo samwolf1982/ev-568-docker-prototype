@@ -829,7 +829,7 @@ class NotORM_Result extends NotORM_Abstract implements Iterator, ArrayAccess, Co
 
 
     // extend
-    public function get($column = ''){
+    public function first($column = ''){
         return $this->fetch($column);
     }
     public function all(){

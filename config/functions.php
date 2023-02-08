@@ -8,6 +8,15 @@ function getApplicationName(){
     return false;
 }
 
+function getInstanceId(){
+    $uri=  trim($_SERVER['REQUEST_URI'],'/');
+    $result=  explode('/',$uri);
+    if(count($result)>2){
+        return $result[2];
+    }
+    return false;
+}
+
 
 
 

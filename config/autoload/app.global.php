@@ -47,6 +47,9 @@ return [
             ConnectSqlite::class =>function (ContainerInterface $container) {
                 $config = $container->get('config')['connect_sqlite'];
                   $applicationName= getApplicationName();
+                  $instanceId=getInstanceId();
+                  var_dump($applicationName);
+                  die();
 //                 todo ask about it  how to run  in the console?
                   $applicationName='bowling-center-management';
                   if($applicationName){
