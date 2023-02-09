@@ -30,9 +30,6 @@ class SettingsController
     {
         // throw new \Exception("Test");
 
-
-        $request = $request->withParsedBody(json_decode($request->getBody()->getContents()));
-
         return new JsonResponse([
             'settings' => 555,
             'attributes' => $request->getAttributes(),
