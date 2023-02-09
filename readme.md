@@ -12,6 +12,11 @@ params --step=   rollback step (only with --command=rollback)
 --Example  
 php console/sqliteMigrate.php --name=bowling-center-management --id=DEVc294b906e-1556261996.04-3615142968 --command=create --className=Bus  
 
+
+postgres migrations  (all params like in sqlMigration)
+php console/postgresMigrate.php --name=bowling-center-management --id=DEVc294b906e-1556261996.04-3615142968  --host=postgres --port=5432   --dbname=project_db --user=user_1 --password=1111  --command=create --className=Bus
+ 
+
 vendor/bin/phinx create Init  
 vendor/bin/phinx migrate
 

@@ -13,9 +13,23 @@ return [
         'username' => '',
         'password' => '',
     ],
+
+    'connect_postgres' => [
+        // 'dsn' => 'pgsql:host=postgres;port=5432;dbname=project_db;user=user_1;password=password',
+        'dsn' => "pgsql:host={host};port={port};dbname={dbname};user={user};password={password}",
+         'host'=>'postgres',
+         'port'=>'5432',
+         'dbname'=>'project_db',
+         'user'=>'user_1',
+         'password'=>'1111',
+    ],
     'phinx' => [
         'databaseSqlite' => 'data/{applicationName}/instances/{instanceId}/db/db.sqlite',
-        'migrationSqliteDirectory' => 'data/{applicationName}/db/migrations',
-        'seedsSqliteDirectory' => 'data/{applicationName}/db/seeds',
+
+        'migrationSqliteDirectory' => 'data/{applicationName}/db/sqlite/migrations',
+        'seedsSqliteDirectory' => 'data/{applicationName}/db/sqlite/seeds',
+
+        'migrationPostgresDirectory' => 'data/{applicationName}/db/postgres/migrations',
+        'seedsPostgresDirectory' => 'data/{applicationName}/db/postgres/seeds',
     ],
 ];

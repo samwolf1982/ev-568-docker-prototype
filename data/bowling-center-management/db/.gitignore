@@ -1,4 +1,4 @@
-!migrations
-!migrations/*
-!seeds
-!seeds/*
+!postgres
+!postgres/*
+!sqlite
+!sqlite/*

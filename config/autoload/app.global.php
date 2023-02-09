@@ -7,11 +7,11 @@ use Framework\Http\Application;
 use Framework\Http\Pipeline\MiddlewareResolver;
 use Framework\Http\Router\AuraRouterAdapter;
 use Framework\Http\Router\Router;
+use Framework\Infrastructure\Connections\ConnectPostgres;
 use Framework\Infrastructure\Connections\ConnectSqlite;
 //use Framework\Infrastructure\PdoFactory;
 use Framework\Infrastructure\DataBase\ModelSqlite;
 use Framework\Infrastructure\PdoFactory;
-use Framework\Template\TemplateRenderer;
 use Psr\Container\ContainerInterface;
 
 return [
@@ -51,7 +51,7 @@ return [
 
                 $dbPath = str_replace('{applicationName}', $applicationName, $container->get('config')['connect_sqlite']['dsn']);
                 $dbPath = str_replace('{instanceId}', $instanceId,$dbPath);
-                  //todo check exist file
+
                 try{
                     return  new ConnectSqlite(new \PDO($dbPath,
                         $config['username'],
@@ -67,24 +67,22 @@ return [
 //                    $container
 //                );
             } ,
-            //todo only console migration need fix
-//            PDO::class =>function (ContainerInterface $container) {
-//                $config = $container->get('config')['connect_sqlite'];
-////                var_dump(1234);die();
-//                $applicationName= getApplicationName();
-////                 todo ask about it  how to run  in the console?
-//                $applicationName='bowling-center-management';
-//                if($applicationName){
-//                    return new PDO( str_replace('{applicationName}',$applicationName,$config['dsn']) ,
-//                        $config['username'],
-//                        $config['password'],
-//                        $config['options']
-//                    );
-//                }else{
-//                    throw new ErrorException('Empty application name',500);
-//                }
-//            } ,
 
+
+            // todo create another connection
+            ConnectPostgres::class =>function (ContainerInterface $container) {
+                $config = $container->get('config')['connect_postgres'];
+                $applicationName= getApplicationName();
+                $instanceId=getInstanceId();
+                $connectSting=    getConnectionStringPostgres($config['dsn'],$config);
+
+
+                try{
+                    return  new ConnectPostgres(new \PDO($connectSting));
+                }catch (Exception $e){
+                    throw new ErrorException($e->getMessage(),500);
+                }
+            } ,
 
 
         ],

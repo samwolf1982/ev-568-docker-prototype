@@ -1,5 +1,7 @@
 <?php
 
+use Psr\Container\ContainerInterface;
+
 const DATA_DIRECTORY = __DIR__ . '/../data';
 
 function getPathDataOfApplication()
@@ -32,6 +34,16 @@ function getInstanceId()
     return false;
 }
 
+
+function getConnectionStringPostgres( $dsnString,array $config){
+    $connectSting=$dsnString;
+    $connectSting = str_replace('{host}', $config['host'],$connectSting);
+    $connectSting = str_replace('{port}', $config['port'],$connectSting);
+    $connectSting = str_replace('{dbname}', $config['dbname'],$connectSting);
+    $connectSting = str_replace('{user}', $config['user'],$connectSting);
+    $connectSting = str_replace('{password}', $config['password'],$connectSting);
+    return $connectSting;
+}
 
 //----------------- only terminal use
 //https://www.php.net/manual/en/features.commandline.php

@@ -29,13 +29,34 @@ class Bus extends AbstractMigration
      * Remember to call "create()" or "update()" and NOT "save()" when working
      * with the Table class.
      */
-    public function change()
+//    public function change()
+//    {
+//
+//    }
+
+     public function up()
     {
-        // create the table
-        $this->table('bus')
-            ->addColumn('date', 'datetime')
-            ->addColumn('title', 'string')
-            ->addColumn('content', 'text')
+
+        $this->table(strtolower("Bus"))
+            ->addColumn('name', 'string')
+
+//            ->addColumn('title', 'string', ['limit' => 20])
+//            ->addColumn('body', 'text')
+            ->addTimestamps()
             ->create();
+
+
+//        $table->addColumn('title', 'string', ['limit' => 20])
+//            ->addColumn('body', 'text')
+//            ->addColumn('cover_image', 'string')
+//            ->addTimestamps()
+//            ->addIndex(['title'], ['unique' => true]);
+//
+//        $table->create();
+    }
+
+    public function down()
+    {
+        $this->table(strtolower("Bus"))->drop()->save();
     }
 }

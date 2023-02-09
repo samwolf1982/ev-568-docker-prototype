@@ -2,7 +2,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class Post extends AbstractMigration
+class Bus5 extends AbstractMigration
 {
     /**
      * Change Method.
@@ -31,27 +31,32 @@ class Post extends AbstractMigration
      */
 //    public function change()
 //    {
-//        // create the table
-//        $this->table('posts')
-//            ->addColumn('date', 'datetime')
-//            ->addColumn('title', 'string')
-//            ->addColumn('content', 'text')
-//            ->create();
+//
 //    }
 
-    public function up(){
-        $this->table('posts')
-            ->addColumn('date', 'datetime')
-            ->addColumn('title', 'string')
-            ->addColumn('content', 'text')
+     public function up()
+    {
+
+        $this->table(strtolower("Bus5"))
+            ->addColumn('name', 'string')
+
+//            ->addColumn('title', 'string', ['limit' => 20])
+//            ->addColumn('body', 'text')
+            ->addTimestamps()
             ->create();
+
+
+//        $table->addColumn('title', 'string', ['limit' => 20])
+//            ->addColumn('body', 'text')
+//            ->addColumn('cover_image', 'string')
+//            ->addTimestamps()
+//            ->addIndex(['title'], ['unique' => true]);
+//
+//        $table->create();
     }
 
-    public function down(){
-        $this->dropTable('posts');
-
+    public function down()
+    {
+        $this->table(strtolower("Bus5"))->drop()->save();
     }
-
-
-
 }
