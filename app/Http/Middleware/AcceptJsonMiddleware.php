@@ -9,8 +9,10 @@ class AcceptJsonMiddleware
 {
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next)
     {
-        if (strpos(current($request->getHeader('accept')), 'application/json') !== false) {
-            $request = $request->withParsedBody(json_decode($request->getBody()->getContents()));
+        if (strpos(strtolower(current($request->getHeader('accept'))), 'application/json') !== false) {
+            if ($contents = $request->getBody()->getContents()) {
+                $request = $request->withParsedBody(json_decode($contents));
+            }
         }
 
         return $next($request, $response, $next);
