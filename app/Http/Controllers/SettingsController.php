@@ -2,40 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\ReadModel\PostReadRepository;
+use App\Models\Setting;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\JsonResponse;
-use Zend\Diactoros\ServerRequest;
 
 class SettingsController
 {
-
-    private $posts;
-    public function __construct(PostReadRepository $posts)
-    {
-        $this->posts = $posts;
-    }
-
     public function get()
     {
-//        $stmt = $this->pdo->query('SELECT * FROM posts ORDER BY id DESC');
-//
-//        $obk= $stmt->fetchAll();
-        return new JsonResponse([
-            'settings' => 5552,
-        ]);
+        $settings = (new Setting)->all();
+        return new JsonResponse($settings);
     }
 
-    public function save(ServerRequest $request)
+    public function save(ServerRequestInterface $request)
     {
-        // throw new \Exception("Test");
+        $settings = $request->getParsedBody();
+        $setting = new Setting;
 
-        return new JsonResponse([
-            'settings' => 555,
-            'attributes' => $request->getAttributes(),
-            'args' => array_map('get_class', func_get_args()),
+        foreach ((array)$settings as $type => $list) {
+            foreach ($list as $key => $value) {
+                $setting->save($key, $value, $type);
+            }
+        }
 
-            'parset_body' => $request->getParsedBody(),
-        ]);
+        return $this->get();
     }
 }

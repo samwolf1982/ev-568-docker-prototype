@@ -2,7 +2,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class Post extends AbstractMigration
+class CreateSettingsTable extends AbstractMigration
 {
     /**
      * Change Method.
@@ -29,29 +29,18 @@ class Post extends AbstractMigration
      * Remember to call "create()" or "update()" and NOT "save()" when working
      * with the Table class.
      */
-//    public function change()
-//    {
-//        // create the table
-//        $this->table('posts')
-//            ->addColumn('date', 'datetime')
-//            ->addColumn('title', 'string')
-//            ->addColumn('content', 'text')
-//            ->create();
-//    }
 
-    public function up(){
-        $this->table('posts')
-            ->addColumn('date', 'datetime')
-            ->addColumn('title', 'string')
-            ->addColumn('content', 'text')
+    public function up()
+    {
+        $this->table('settings')
+            ->addColumn('key', 'string', ['limit' => 128])
+            ->addColumn('value', 'text')
+            ->addColumn('type', 'string', ['limit' => 128])
             ->create();
     }
 
-    public function down(){
-        $this->dropTable('posts');
-
+    public function down()
+    {
+        $this->dropTable('settings');
     }
-
-
-
 }

@@ -11,7 +11,9 @@ class AcceptJsonMiddleware
     {
         if (strpos(strtolower(current($request->getHeader('accept'))), 'application/json') !== false) {
             if ($contents = $request->getBody()->getContents()) {
-                $request = $request->withParsedBody(json_decode($contents));
+                if ($decoded = json_decode($contents, true)) {
+                    $request = $request->withParsedBody($decoded);
+                }
             }
         }
 
