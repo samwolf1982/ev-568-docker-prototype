@@ -16,8 +16,8 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/App/",
-            "Framework\\": "src/Framework/"
+            "App\\": "app/",
+            "Framework\\": "lib/Framework/"
         }
     },
     "scripts": {

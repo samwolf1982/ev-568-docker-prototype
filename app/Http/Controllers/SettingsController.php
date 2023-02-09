@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\ReadModel\PostReadRepository;
+use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\JsonResponse;
 use Zend\Diactoros\ServerRequest;
 
-class SettingsAction
+class SettingsController
 {
 
     private $posts;
@@ -29,10 +30,15 @@ class SettingsAction
     {
         // throw new \Exception("Test");
 
+
+        $request = $request->withParsedBody(json_decode($request->getBody()->getContents()));
+
         return new JsonResponse([
             'settings' => 555,
             'attributes' => $request->getAttributes(),
-            'args' => get_class(func_get_args()[0])
+            'args' => array_map('get_class', func_get_args()),
+
+            'parset_body' => $request->getParsedBody(),
         ]);
     }
 }

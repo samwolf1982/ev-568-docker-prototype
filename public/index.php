@@ -11,7 +11,7 @@ use Zend\Diactoros\ServerRequestFactory;
 
 chdir(dirname(__DIR__));
 require 'vendor/autoload.php';
-include "src/Framework/Infrastructure/DataBase/NotORM.php";
+include "lib/Framework/Infrastructure/DataBase/NotORM.php";
 require_once "config/functions.php";
 $container = require 'config/container.php';
 

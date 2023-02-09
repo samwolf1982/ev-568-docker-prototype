@@ -10,10 +10,9 @@ use Interop\Container\ContainerInterface;
 
 $prefixPath = '/addons/{applicationName}/{instanceId}';
 
-//$app->get('base_config', $prefixPath . '/base-config', Action\BaseConfigAction::class);
-$app->get($prefixPath . '/base-config', Controllers\BaseConfigAction::class);
-$app->get($prefixPath . '/settings', 'App\Http\Action\SettingsAction@get');
-$app->post($prefixPath . '/settings', 'App\Http\Action\SettingsAction@save');
+$app->get($prefixPath . '/base-config', Controllers\BaseConfigController::class);
+$app->get($prefixPath . '/settings', 'App\Http\Controllers\SettingsController@get');
+$app->post($prefixPath . '/settings', 'App\Http\Controllers\SettingsController@save');
 
 
 $app->get("{$prefixPath}/blog", Controllers\Blog\IndexAction::class);

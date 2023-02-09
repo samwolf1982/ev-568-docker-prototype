@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Zend\Diactoros\Response\JsonResponse;
 
-class BaseConfigAction
+class BaseConfigController
 {
     public function __invoke()
     {
