@@ -2,7 +2,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class Bus5 extends AbstractMigration
+class CreateSettingsTable extends AbstractMigration
 {
     /**
      * Change Method.
@@ -29,34 +29,18 @@ class Bus5 extends AbstractMigration
      * Remember to call "create()" or "update()" and NOT "save()" when working
      * with the Table class.
      */
-//    public function change()
-//    {
-//
-//    }
 
-     public function up()
+    public function up()
     {
-
-        $this->table(strtolower("Bus5"))
-            ->addColumn('name', 'string')
-
-//            ->addColumn('title', 'string', ['limit' => 20])
-//            ->addColumn('body', 'text')
-            ->addTimestamps()
+        $this->table('settings')
+            ->addColumn('key', 'string', ['limit' => 128])
+            ->addColumn('value', 'text')
+            ->addColumn('type', 'string', ['limit' => 128])
             ->create();
-
-
-//        $table->addColumn('title', 'string', ['limit' => 20])
-//            ->addColumn('body', 'text')
-//            ->addColumn('cover_image', 'string')
-//            ->addTimestamps()
-//            ->addIndex(['title'], ['unique' => true]);
-//
-//        $table->create();
     }
 
     public function down()
     {
-        $this->table(strtolower("Bus5"))->drop()->save();
+        $this->dropTable('settings');
     }
 }

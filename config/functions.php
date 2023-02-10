@@ -49,27 +49,30 @@ function getConnectionStringPostgres( $dsnString,array $config){
 //https://www.php.net/manual/en/features.commandline.php
 function arguments($argv)
 {
-
     $_ARG = array();
-
-    foreach ($argv as $arg) {
-
-        if (ereg('--([^=]+)=(.*)', $arg, $reg)) {
-
-            $_ARG[$reg[1]] = $reg[2];
-
-        } elseif (ereg('^-([a-zA-Z0-9])', $arg, $reg)) {
-
-            $_ARG[$reg[1]] = 'true';
-
-        } else {
-
-            $_ARG['input'][] = $arg;
-
+    foreach ($argv as $arg)
+    {
+        if (preg_match('#^-{1,2}([a-zA-Z0-9]*)=?(.*)$#', $arg, $matches))
+        {
+            $key = $matches[1];
+            switch ($matches[2])
+            {
+                case '':
+                case 'true':
+                    $arg = true;
+                    break;
+                case 'false':
+                    $arg = false;
+                    break;
+                default:
+                    $arg = $matches[2];
+            }
+            $_ARG[$key] = $arg;
         }
-
+        else
+        {
+            $_ARG['input'][] = $arg;
+        }
     }
-
     return $_ARG;
-
 }
